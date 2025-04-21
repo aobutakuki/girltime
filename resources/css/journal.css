@@ -162,7 +162,7 @@
     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     height: 0;
     overflow: hidden;
-  }
+}
   
   .video-container iframe {
     position: absolute;
@@ -170,4 +170,69 @@
     left: 0;
     width: 600px;
     height:320px;
-  }
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-container h1 {
+    font-family: 'coolFont';
+    font-size: 5.5rem;
+    color: #f944b3;
+    margin-bottom: 60px;
+}
+
+.product-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.product-card {
+    
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 2.0rem;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    font-family: 'IM Fell English', serif;
+    font-size: 2.0rem;
+    font-style: italic;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #f944b3 !important;
+    border-color: #f944b3 !important;
+    font-family: 'IM Fell English', serif !important;
+    font-style: italic;
+}
+
+.btn-primary:hover {
+    background-color: #b01a76 !important;
+    border-color: #b01a76 !important;
+}
