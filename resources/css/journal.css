@@ -236,3 +236,23 @@
     background-color: #b01a76 !important;
     border-color: #b01a76 !important;
 }
+/* Footer styles */
+.footer{
+    background-color: #f944b3;
+    color: #fff1b8;
+    padding: 20px;
+    text-align: center;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.5em;
+}
+
+.footer i{
+    font-size: 1.0em;
+    text-decoration: none;
+    color:white;
+}
+
+.footer h3{
+    font-size: 1.0em;
+}
