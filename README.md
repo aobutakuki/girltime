@@ -11,4 +11,6 @@ To do list:
 - Add about me page
 - Add favorite logic
 - Fix resolution for mobile screens
+- Implement products from database
+- Sync products between yampi and database
   
