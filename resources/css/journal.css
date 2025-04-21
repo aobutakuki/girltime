@@ -5,6 +5,18 @@
     font-style: normal; /* Adjust if italic */
 }
 
+.header-logo-link {
+    color: inherit; /* Inherits the color from parent h2 */
+    text-decoration: none; /* Removes underline */
+    font-family: inherit; /* Inherits the coolFont */
+    font-size: inherit; /* Keeps the same size */
+}
+
+.header-logo-link:hover {
+    color: inherit; /* Maintains color on hover */
+    text-decoration: none; /* No underline on hover */
+}
+
 .head-main-items{
     display: flex;
     
