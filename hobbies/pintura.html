@@ -160,7 +160,70 @@
 </div>
 
 
-
+<script>
+  if(window.innerWidth < 1000){
+document.addEventListener('DOMContentLoaded', function() {
+  // Create mobile menu button
+  const menuBtn = document.createElement('button');
+  menuBtn.className = 'mobile-menu-btn';
+  menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  menuBtn.setAttribute('aria-label', 'Open menu');
+  
+  // Create close button (now properly positioned)
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'close-menu';
+  closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+  closeBtn.setAttribute('aria-label', 'Close menu');
+  closeBtn.style.display = 'none';
+  
+  // Insert elements
+  const headMain = document.querySelector('.head-main-items');
+  headMain.insertBefore(menuBtn, headMain.firstChild);
+  
+  document.body.appendChild(closeBtn);
+  
+  const subMenu = document.querySelector('.head-sub-items');
+  
+  // Menu toggle function
+  function toggleMenu(show) {
+    if (show) {
+      subMenu.classList.add('active');
+      closeBtn.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    } else {
+      subMenu.classList.remove('active');
+      closeBtn.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+  
+  // Event listeners
+  menuBtn.addEventListener('click', () => toggleMenu(true));
+  closeBtn.addEventListener('click', () => toggleMenu(false));
+  
+  // Close menu when clicking outside or on links
+  document.addEventListener('click', function(e) {
+    const subMenu = document.querySelector('.head-sub-items');
+    if (!subMenu.contains(e.target) && 
+        e.target !== document.querySelector('.mobile-menu-btn') &&
+        !document.querySelector('.mobile-menu-btn').contains(e.target)) {
+      subMenu.classList.remove('active');
+      closeBtn.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // Handle window resize
+  function handleResize() {
+    if (window.innerWidth > 768) {
+      toggleMenu(false);
+    }
+  }
+  
+  window.addEventListener('resize', handleResize);
+});
+}
+</script>
 
 
 
