@@ -62,7 +62,7 @@
             </div>
           </div>
           <div class="menu-item">
-            <a href="#services">sobre mim</a>
+            <a href="../hobbies/sobre.html">sobre mim</a>
           </div>
     </div>
 </div>
@@ -102,4 +102,34 @@
             $(".register-form").toggle();
         });
     });
+
+    //Send Request to see if user can be registered
+   
+
+
+const registerForm = document.querySelector('.register-form form');
+
+registerForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const formData = {
+        username: registerForm.elements['username'].value,
+        email: registerForm.elements['email'].value,
+        fullName: registerForm.elements['name'].value,
+        password: registerForm.elements['password'].value
+    };
+
+    console.log('Form data:', formData);
+    
+    fetch('http://localhost:8080/api/auth/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => console.log('Success:', data))
+    .catch(error => console.error('Error:', error));
+});
 </script>
