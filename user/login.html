@@ -154,4 +154,47 @@ registerForm.addEventListener('submit', function(event) {
     });
 });
 
+const loginForm = document.querySelector('.login-form form');
+
+loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+       // Clear previous errors
+    const errorElement = loginForm.querySelector('.error-message');
+    errorElement.textContent = '';
+    errorElement.style.visibility = 'hidden';
+    
+    const formData = {
+        username: loginForm.elements['username'].value,
+        password: loginForm.elements['password'].value
+    };
+
+    fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => {
+                throw new Error(err.message || 'Login failed');
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Login success:', data);
+        window.location.href = "../index.html"; // Redirect on success
+    })
+    .catch(error => {
+        console.error('Login error:', error);
+        const errorElement = loginForm.querySelector('.error-message');
+        errorElement.textContent = 'Erro ao fazer login! Nome de usuario ou senha incorretos.';
+        errorElement.style.color = "red";
+        errorElement.style.fontSize = "12px";
+        errorElement.style.visibility = "visible";
+    });
+});
+
 </script>
