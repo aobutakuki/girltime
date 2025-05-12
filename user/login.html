@@ -76,6 +76,7 @@
             <input type="text" placeholder="username ou email" name="username" required/>
             <input type="password" placeholder="senha" name="password" required/>
             <button class="btn btn-primary" type="submit">Login</button>
+            <p class="error-message"></p>
             <p class="message">Nao tem uma conta? <a href="#">Crie uma conta</a></p>
         </form>
     </div>
@@ -87,6 +88,7 @@
             <input type="text" placeholder="nome completo" name="name" required/>
             <input type="password" placeholder="senha" name="password" required/>
             <button class="btn btn-primary" type="submit">Criar Conta</button>
+            <p class="error-message"></p>
             <p class="message">Ja tem uma conta? <a href="#">Login</a></p>
         </form>
     </div>
@@ -111,6 +113,10 @@ const registerForm = document.querySelector('.register-form form');
 
 registerForm.addEventListener('submit', function(event) {
     event.preventDefault();
+       // Clear previous errors
+    const errorElement = registerForm.querySelector('.error-message');
+    errorElement.textContent = '';
+    errorElement.style.visibility = 'hidden';
     
     const formData = {
         username: registerForm.elements['username'].value,
@@ -119,8 +125,6 @@ registerForm.addEventListener('submit', function(event) {
         password: registerForm.elements['password'].value
     };
 
-    console.log('Form data:', formData);
-    
     fetch('http://localhost:8080/api/auth/register', {
         method: 'POST',
         headers: {
@@ -128,8 +132,26 @@ registerForm.addEventListener('submit', function(event) {
         },
         body: JSON.stringify(formData)
     })
-    .then(response => response.json())
-    .then(data => console.log('Success:', data))
-    .catch(error => console.error('Error:', error));
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => {
+                throw new Error(err.message || 'Registration failed');
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Registration success:', data);
+        window.location.href = "../index.html"; // Redirect on success
+    })
+    .catch(error => {
+        console.error('Registration error:', error);
+        const errorElement = registerForm.querySelector('.error-message');
+        errorElement.textContent = 'Erro ao criar conta! Nome de usuario ou email ja esta em uso.';
+        errorElement.style.color = "red";
+        errorElement.style.fontSize = "12px";
+        errorElement.style.visibility = "visible";
+    });
 });
+
 </script>
