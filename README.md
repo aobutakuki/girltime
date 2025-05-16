@@ -2,7 +2,7 @@ To do list:
 
 - Add heart to the product
 - Add login page 🟢
-- Add login logic 🟡
+- Add login logic 🟡 (user related is missing support)
 - Add cart logic
 - Make communication between yampi API and local server
 - Make so that users can track their orders
